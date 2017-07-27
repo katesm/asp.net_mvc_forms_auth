@@ -3,7 +3,11 @@
 }
 <h2>Login</h2>
 <p>Please login below</p>
-
+@if(ViewBag.Error != null){
+    <div class="alert alert-info">
+        @ViewBag.Error
+    </div>
+}
 <form action="/Account/Login" method="post">
     <input type="text" name="username" />
     <input type="password" name="password" />

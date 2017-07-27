@@ -30,17 +30,24 @@ namespace tris.Controllers
                     new Claim(ClaimTypes.Name, loginModel.Username)
                  };
 
-                 
+
                 var userIdentity = new ClaimsIdentity(claims, "login");
 
                 ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.Authentication.SignInAsync("TRIS", principal);
 
                 //Just redirect to our index after logging in. 
-                return RedirectToAction("index","Users");
+                return RedirectToAction("index", "Users");
             }
             ViewBag.Error = "Username or password is incorrect.";
             return View();
+        }
+
+        public async Task<IActionResult> SignOut()
+        {
+                await HttpContext.Authentication.SignOutAsync("TRIS");
+                
+                return RedirectToAction("index", "home");
         }
 
         private bool LoginUser(string username, string password)
