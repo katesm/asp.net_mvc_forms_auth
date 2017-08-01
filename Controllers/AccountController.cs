@@ -54,7 +54,7 @@ namespace tris.Controllers
         {
             return username == password;
 
-            //You would got to the db here.
+            //You would add code for the db here.
         }
     }
 }
